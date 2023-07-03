@@ -1,5 +1,5 @@
 import { memo } from "react";
-import { EditScheduleHeaderPropsType } from "../types";
+import { EditScheduleHeaderPropsType } from "../../types";
 
 export const EditScheduleHeader = memo(function ({
 	headerText,

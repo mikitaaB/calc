@@ -1,159 +1,100 @@
-import { memo, useState, ChangeEvent } from "react";
+import {
+	memo,
+	useState,
+	ChangeEvent,
+	Fragment,
+	useCallback,
+	useMemo,
+} from "react";
 import { WeekDaysPropsType } from "../types";
 
 export const WeekDays = memo(function ({
-	weekdays,
+	selWeekdays,
 	handleWeekdaysChange,
 }: WeekDaysPropsType) {
-	const [checkedDays, setCheckedDays] = useState<number[]>(weekdays);
+	const [checkedDays, setCheckedDays] = useState<number[]>(selWeekdays);
 
-	const handleCheckboxChange = (
-		day: number,
-		event: ChangeEvent<HTMLInputElement>
-	) => {
-		let newCheckedDays;
+	const handleCheckboxChange = useCallback(
+		(day: number, event: ChangeEvent<HTMLInputElement>) => {
+			let newCheckedDays;
 
-		if (event.target.checked) {
-			newCheckedDays = [...checkedDays, day];
-		} else {
-			newCheckedDays = checkedDays.filter(
-				(checkedDay) => checkedDay !== day
-			);
-		}
+			if (event.target.checked) {
+				newCheckedDays = [...checkedDays, day];
+			} else {
+				newCheckedDays = checkedDays.filter(
+					(checkedDay) => checkedDay !== day
+				);
+			}
 
-		setCheckedDays(newCheckedDays);
-		handleWeekdaysChange(newCheckedDays);
-	};
+			setCheckedDays(newCheckedDays);
+			handleWeekdaysChange(newCheckedDays);
+		},
+		[checkedDays, handleWeekdaysChange]
+	);
 
-	const handleGroupChange = (days: number[]) => {
-		let newCheckedDays;
+	const handleGroupChange = useCallback(
+		(days: number[]) => {
+			let newCheckedDays;
 
-		if (days.every((day) => checkedDays.includes(day))) {
-			newCheckedDays = checkedDays.filter(
-				(checkedDay) => !days.includes(checkedDay)
-			);
-		} else {
-			newCheckedDays = [
-				...checkedDays.filter(
+			if (days.every((day) => checkedDays.includes(day))) {
+				newCheckedDays = checkedDays.filter(
 					(checkedDay) => !days.includes(checkedDay)
-				),
-				...days,
-			];
-		}
+				);
+			} else {
+				newCheckedDays = [
+					...checkedDays.filter(
+						(checkedDay) => !days.includes(checkedDay)
+					),
+					...days,
+				];
+			}
 
-		setCheckedDays(newCheckedDays);
-		handleWeekdaysChange(newCheckedDays);
-	};
+			setCheckedDays(newCheckedDays);
+			handleWeekdaysChange(newCheckedDays);
+		},
+		[checkedDays, handleWeekdaysChange]
+	);
+
+	const weekdays = useMemo(
+		() => [
+			{ id: "mwfbtn", label: "ПН/СР/ПТ", val: [1, 3, 5] },
+			{ id: "tuethubtn", label: "ВТ/ЧТ", val: [2, 4] },
+			{ id: "monbtn", label: "ПН", val: 1 },
+			{ id: "tuebtn", label: "ВТ", val: 2 },
+			{ id: "wedbtn", label: "СР", val: 3 },
+			{ id: "thubtn", label: "ЧТ", val: 4 },
+			{ id: "fribtn", label: "ПТ", val: 5 },
+			{ id: "satbtn", label: "СБ", val: 6 },
+			{ id: "sanbtn", label: "ВС", val: 0 },
+		],
+		[]
+	);
 
 	return (
 		<div className="btn-group" role="group" aria-label="weekdays_group">
-			<input
-				type="checkbox"
-				className="btn-check"
-				id="mwfbtn"
-				autoComplete="off"
-				onChange={() => handleGroupChange([1, 3, 5])}
-				checked={[1, 3, 5].every((day) => checkedDays.includes(day))}
-			/>
-			<label className="btn btn-outline-primary" htmlFor="mwfbtn">
-				ПН/СР/ПТ
-			</label>
-
-			<input
-				type="checkbox"
-				className="btn-check"
-				id="tuethubtn"
-				autoComplete="off"
-				onChange={() => handleGroupChange([2, 4])}
-				checked={[2, 4].every((day) => checkedDays.includes(day))}
-			/>
-			<label className="btn btn-outline-primary" htmlFor="tuethubtn">
-				ВТ/ЧТ
-			</label>
-
-			<input
-				type="checkbox"
-				className="btn-check"
-				id="monbtn"
-				autoComplete="off"
-				checked={checkedDays.includes(1)}
-				onChange={(e) => handleCheckboxChange(1, e)}
-			/>
-			<label className="btn btn-outline-primary" htmlFor="monbtn">
-				ПН
-			</label>
-
-			<input
-				type="checkbox"
-				className="btn-check"
-				id="tuebtn"
-				autoComplete="off"
-				checked={checkedDays.includes(2)}
-				onChange={(e) => handleCheckboxChange(2, e)}
-			/>
-			<label className="btn btn-outline-primary" htmlFor="tuebtn">
-				ВТ
-			</label>
-
-			<input
-				type="checkbox"
-				className="btn-check"
-				id="wedbtn"
-				autoComplete="off"
-				checked={checkedDays.includes(3)}
-				onChange={(e) => handleCheckboxChange(3, e)}
-			/>
-			<label className="btn btn-outline-primary" htmlFor="wedbtn">
-				СР
-			</label>
-
-			<input
-				type="checkbox"
-				className="btn-check"
-				id="thubtn"
-				autoComplete="off"
-				checked={checkedDays.includes(4)}
-				onChange={(e) => handleCheckboxChange(4, e)}
-			/>
-			<label className="btn btn-outline-primary" htmlFor="thubtn">
-				ЧТ
-			</label>
-
-			<input
-				type="checkbox"
-				className="btn-check"
-				id="fribtn"
-				autoComplete="off"
-				checked={checkedDays.includes(5)}
-				onChange={(e) => handleCheckboxChange(5, e)}
-			/>
-			<label className="btn btn-outline-primary" htmlFor="fribtn">
-				ПТ
-			</label>
-
-			<input
-				type="checkbox"
-				className="btn-check"
-				id="satbtn"
-				autoComplete="off"
-				checked={checkedDays.includes(6)}
-				onChange={(e) => handleCheckboxChange(6, e)}
-			/>
-			<label className="btn btn-outline-primary" htmlFor="satbtn">
-				СБ
-			</label>
-
-			<input
-				type="checkbox"
-				className="btn-check"
-				id="sanbtn"
-				autoComplete="off"
-				checked={checkedDays.includes(0)}
-				onChange={(e) => handleCheckboxChange(0, e)}
-			/>
-			<label className="btn btn-outline-primary" htmlFor="sanbtn">
-				ВС
-			</label>
+			{weekdays.map((day) => (
+				<Fragment key={day.id}>
+					<input
+						type="checkbox"
+						className="btn-check"
+						id={day.id}
+						autoComplete="off"
+						onChange={(e) =>
+							Array.isArray(day.val)
+								? handleGroupChange(day.val)
+								: handleCheckboxChange(day.val, e)
+						}
+						checked={
+							Array.isArray(day.val)
+								? day.val.every((d) => checkedDays.includes(d))
+								: checkedDays.includes(day.val)
+						}
+					/>
+					<label className="btn btn-outline-primary" htmlFor={day.id}>
+						{day.label}
+					</label>
+				</Fragment>
+			))}
 		</div>
 	);
 });

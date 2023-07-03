@@ -4,13 +4,13 @@ import {
 	breakTypeOptions,
 	classroomOptions,
 	teacherOptions,
-} from "../constants";
-import { Alert } from "./Alert";
-import { Select } from "./Select";
-import { StepInput } from "./StepInput";
-import { WeekDays } from "./WeekDays";
-import { Timer } from "./Timer";
-import { EditScheduleBodyPropsType } from "../types";
+} from "../../constants";
+import { Alert } from "../Alert";
+import { Select } from "../Select";
+import { StepInput } from "../StepInput";
+import { WeekDays } from "../WeekDays";
+import { Timer } from "../Timer";
+import { EditScheduleBodyPropsType } from "../../types";
 
 export const EditScheduleBody = memo(function ({
 	handleValueChange,
@@ -101,7 +101,7 @@ export const EditScheduleBody = memo(function ({
 
 				<div className="row py-3">
 					<WeekDays
-						weekdays={weekdays}
+						selWeekdays={weekdays}
 						handleWeekdaysChange={handleWeekdaysChange}
 					/>
 				</div>
@@ -116,7 +116,7 @@ export const EditScheduleBody = memo(function ({
 					<div className="col col-md-4">
 						<StepInput
 							onValueChange={handleHoursPerDayChange}
-							maxValue={1000}
+							maxValue={24}
 							step={0.5}
 							buttonText="Часов в день"
 						/>

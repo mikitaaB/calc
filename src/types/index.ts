@@ -63,6 +63,6 @@ export type TimerPropsType = {
 };
 
 export type WeekDaysPropsType = {
-	weekdays: number[];
+	selWeekdays: number[];
 	handleWeekdaysChange: (values: number[]) => void;
 };

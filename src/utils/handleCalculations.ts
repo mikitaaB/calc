@@ -28,22 +28,20 @@ export const calculateDateEnd = (
 		const startDate = new Date(dateStart);
 		const daysCount = Math.ceil(totalHoursValue / hoursPerDay);
 		const daysOfWeek = [7, 1, 2, 3, 4, 5, 6];
-
-		const currentDate = startDate;
+		let currentDate = startDate;
 		let daysLeft = daysCount;
 
-		if (weekdays.length === 0) {
-			return startDate.toISOString().slice(0, 10);
-		}
-
 		while (daysLeft > 0) {
-			const currentDayOfWeek = daysOfWeek[currentDate.getDay() % 7];
+			const currentDayOfWeek = daysOfWeek[currentDate.getDay()];
 			if (weekdays.includes(currentDayOfWeek)) {
 				daysLeft--;
 			}
-			currentDate.setDate(currentDate.getDate() + 1);
+			if (daysLeft > 0) {
+				currentDate = new Date(
+					currentDate.setDate(currentDate.getDate() + 1)
+				);
+			}
 		}
-
 		return currentDate.toISOString().slice(0, 10);
 	}
 	return new Date().toISOString().slice(0, 10);

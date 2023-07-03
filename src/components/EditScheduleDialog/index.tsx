@@ -5,15 +5,15 @@ import {
 	classroomOptions,
 	hourTypeOptions,
 	teacherOptions,
-} from "../constants";
+} from "../../constants";
 import { EditScheduleFooter } from "./EditScheduleFooter";
 
 import { EditScheduleBody } from "./EditScheduleBody";
 import {
 	calculateDateEnd,
 	calculateTimeEnd,
-} from "../utils/handleCalculations";
-import { ScheduleDataType } from "../types";
+} from "../../utils/handleCalculations";
+import { ScheduleDataType } from "../../types";
 
 const EditScheduleDialog = ({
 	handleCloseDialog,

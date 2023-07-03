@@ -1,5 +1,5 @@
 import { memo } from "react";
-import { EditScheduleFooterPropsType } from "../types";
+import { EditScheduleFooterPropsType } from "../../types";
 
 export const EditScheduleFooter = memo(function ({
 	handleCloseDialog,
