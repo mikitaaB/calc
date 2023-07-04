@@ -1,4 +1,4 @@
-import { ChangeEvent, memo, useCallback, useRef } from "react";
+import { ChangeEvent, memo, useCallback, useMemo, useRef } from "react";
 import {
 	hourTypeOptions,
 	breakTypeOptions,
@@ -61,6 +61,16 @@ export const EditScheduleBody = memo(function ({
 			handleValueChange("dateStart", e.currentTarget.value);
 		},
 		[handleValueChange]
+	);
+
+	const alertContent = useMemo(
+		() => (
+			<>
+				Выбор <strong>преподавателя</strong> и{" "}
+				<strong>аудитории</strong> не обязателен.
+			</>
+		),
+		[]
 	);
 
 	return (
@@ -165,10 +175,7 @@ export const EditScheduleBody = memo(function ({
 						/>
 					</div>
 				</div>
-				<Alert>
-					Выбор <strong>преподавателя</strong> и{" "}
-					<strong>аудитории</strong> не обязателен.
-				</Alert>
+				<Alert>{alertContent}</Alert>
 			</form>
 		</div>
 	);
