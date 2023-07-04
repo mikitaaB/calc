@@ -1,4 +1,4 @@
-import { ChangeEvent, memo, useRef } from "react";
+import { ChangeEvent, memo, useCallback, useRef } from "react";
 import {
 	hourTypeOptions,
 	breakTypeOptions,
@@ -22,28 +22,46 @@ export const EditScheduleBody = memo(function ({
 }: EditScheduleBodyPropsType) {
 	const colorInputRef = useRef<HTMLInputElement>(null);
 
-	const handleTotalHoursChange = (value: number) =>
-		handleValueChange("totalHoursValue", value);
-	const handleHoursPerDayChange = (value: number) =>
-		handleValueChange("hoursPerDay", value);
-	const handleHourTypeChange = (value: number | string) =>
-		handleValueChange("hourValue", value);
-	const handleBreakTypeChange = (value: number | string) =>
-		handleValueChange("breakType", Number(value));
-	const handleClassroomChange = (value: number | string) =>
-		handleValueChange("classroom", value);
-	const handleTeacherChange = (value: number | string) =>
-		handleValueChange("teacher", value);
-	const handleWeekdaysChange = (value: number[]) =>
-		handleValueChange("weekdays", value);
-	const handleGroupColorChange = () => {
+	const handleTotalHoursChange = useCallback(
+		(value: number) => handleValueChange("totalHoursValue", value),
+		[handleValueChange]
+	);
+	const handleHoursPerDayChange = useCallback(
+		(value: number) => handleValueChange("hoursPerDay", value),
+		[handleValueChange]
+	);
+	const handleHourTypeChange = useCallback(
+		(value: number | string) => handleValueChange("hourValue", value),
+		[handleValueChange]
+	);
+	const handleBreakTypeChange = useCallback(
+		(value: number | string) =>
+			handleValueChange("breakType", Number(value)),
+		[handleValueChange]
+	);
+	const handleClassroomChange = useCallback(
+		(value: number | string) => handleValueChange("classroom", value),
+		[handleValueChange]
+	);
+	const handleTeacherChange = useCallback(
+		(value: number | string) => handleValueChange("teacher", value),
+		[handleValueChange]
+	);
+	const handleWeekdaysChange = useCallback(
+		(value: number[]) => handleValueChange("weekdays", value),
+		[handleValueChange]
+	);
+	const handleGroupColorChange = useCallback(() => {
 		if (colorInputRef.current !== null) {
 			handleValueChange("groupColor", colorInputRef.current.value);
 		}
-	};
-	const handleDateStartChange = (e: ChangeEvent<HTMLInputElement>) => {
-		handleValueChange("dateStart", e.currentTarget.value);
-	};
+	}, [handleValueChange]);
+	const handleDateStartChange = useCallback(
+		(e: ChangeEvent<HTMLInputElement>) => {
+			handleValueChange("dateStart", e.currentTarget.value);
+		},
+		[handleValueChange]
+	);
 
 	return (
 		<div className="modal-body" style={{ whiteSpace: "pre-line" }}>

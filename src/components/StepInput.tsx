@@ -1,4 +1,4 @@
-import { memo, useState, useEffect } from "react";
+import { memo, useState, useEffect, useCallback } from "react";
 import { StepInputProps } from "../types";
 
 export const StepInput = memo(function ({
@@ -9,13 +9,16 @@ export const StepInput = memo(function ({
 }: StepInputProps) {
 	const [value, setValue] = useState<number>(0);
 
-	const handleButtonClick = (stepValue: number) => () => {
-		const newValue = value + stepValue;
-		if (newValue < 0 || newValue > maxValue) {
-			return;
-		}
-		setValue(newValue);
-	};
+	const handleButtonClick = useCallback(
+		(stepValue: number) => () => {
+			const newValue = value + stepValue;
+			if (newValue < 0 || newValue > maxValue) {
+				return;
+			}
+			setValue(newValue);
+		},
+		[maxValue, value]
+	);
 
 	useEffect(() => {
 		onValueChange(value);
