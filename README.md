@@ -1,5 +1,7 @@
 # calc
 
+A modal dialog to set up an academic schedule.
+
 ### How to setup
 
 1. Install node.js: https://nodejs.org/en/ (LTS)
