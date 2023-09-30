@@ -1,7 +1,7 @@
 import { memo, useState, useEffect, useCallback } from "react";
-import { StepInputProps } from "../types";
+import { StepInputProps } from "../../types";
 
-export const StepInput = memo(function ({
+const StepInput = memo(function ({
 	onValueChange,
 	maxValue,
 	step,
@@ -52,3 +52,5 @@ export const StepInput = memo(function ({
 		</div>
 	);
 });
+
+export default StepInput;

@@ -4,15 +4,15 @@ import {
 	breakTypeOptions,
 	classroomOptions,
 	teacherOptions,
-} from "../../constants";
-import { Alert } from "../Alert";
-import { Select } from "../Select";
-import { StepInput } from "../StepInput";
-import { WeekDays } from "../WeekDays";
-import { Timer } from "../Timer";
-import { EditScheduleBodyPropsType } from "../../types";
+} from "../../../constants";
+import Alert from "../../Alert";
+import Select from "../../Select";
+import StepInput from "../../StepInput";
+import WeekDays from "../../WeekDays";
+import Timer from "../../Timer";
+import { EditScheduleBodyPropsType } from "../../../types";
 
-export const EditScheduleBody = memo(function ({
+const DialogBody = memo(function ({
 	handleValueChange,
 	weekdays,
 	dateStart,
@@ -180,3 +180,5 @@ export const EditScheduleBody = memo(function ({
 		</div>
 	);
 });
+
+export default DialogBody;

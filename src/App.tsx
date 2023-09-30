@@ -1,6 +1,6 @@
 import { useState, useCallback, Suspense, lazy } from "react";
 
-import { Loader } from "./components/Loader";
+import Loader from "./components/Loader";
 const EditScheduleDialog = lazy(
 	() => import("./components/EditScheduleDialog")
 );

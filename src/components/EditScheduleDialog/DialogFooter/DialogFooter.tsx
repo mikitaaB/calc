@@ -1,7 +1,7 @@
 import { memo } from "react";
-import { EditScheduleFooterPropsType } from "../../types";
+import { EditScheduleFooterPropsType } from "../../../types";
 
-export const EditScheduleFooter = memo(function ({
+const DialogFooter = memo(function ({
 	handleCloseDialog,
 	handleSubmitBtn,
 	submitBtnText,
@@ -26,3 +26,5 @@ export const EditScheduleFooter = memo(function ({
 		</div>
 	);
 });
+
+export default DialogFooter;

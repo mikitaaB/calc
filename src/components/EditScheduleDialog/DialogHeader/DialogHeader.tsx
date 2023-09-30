@@ -1,7 +1,7 @@
 import { memo } from "react";
-import { EditScheduleHeaderPropsType } from "../../types";
+import { EditScheduleHeaderPropsType } from "../../../types";
 
-export const EditScheduleHeader = memo(function ({
+const DialogHeader = memo(function ({
 	headerText,
 	handleCloseDialog,
 }: EditScheduleHeaderPropsType) {
@@ -19,3 +19,5 @@ export const EditScheduleHeader = memo(function ({
 		</div>
 	);
 });
+
+export default DialogHeader;

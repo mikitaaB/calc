@@ -1,7 +1,7 @@
 import { memo } from "react";
-import { TimerPropsType } from "../types";
+import { TimerPropsType } from "../../types";
 
-export const Timer = memo(function ({
+const Timer = memo(function ({
 	start,
 	end,
 	isEditStart,
@@ -27,3 +27,5 @@ export const Timer = memo(function ({
 		</div>
 	);
 });
+
+export default Timer;

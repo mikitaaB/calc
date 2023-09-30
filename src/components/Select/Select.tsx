@@ -1,7 +1,7 @@
 import { ChangeEvent, memo, useState } from "react";
-import { SelectPropsType } from "../types";
+import { SelectPropsType } from "../../types";
 
-export const Select = memo(function ({
+const Select = memo(function ({
 	options,
 	onSelectedOption,
 	hideDefaultOption = false,
@@ -39,3 +39,5 @@ export const Select = memo(function ({
 		</div>
 	);
 });
+
+export default Select;

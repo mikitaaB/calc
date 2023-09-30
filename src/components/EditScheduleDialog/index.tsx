@@ -1,14 +1,14 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { EditScheduleHeader } from "./EditScheduleHeader";
+import DialogHeader from "./DialogHeader";
 import {
 	breakTypeOptions,
 	classroomOptions,
 	hourTypeOptions,
 	teacherOptions,
 } from "../../constants";
-import { EditScheduleFooter } from "./EditScheduleFooter";
+import DialogFooter from "./DialogFooter";
 
-import { EditScheduleBody } from "./EditScheduleBody";
+import DialogBody from "./DialogBody";
 import {
 	calculateDateEnd,
 	calculateTimeEnd,
@@ -119,11 +119,11 @@ const EditScheduleDialog = ({
 				role="document"
 			>
 				<div className="modal-content">
-					<EditScheduleHeader
+					<DialogHeader
 						headerText="Редактирование расписания"
 						handleCloseDialog={handleCloseDialog}
 					/>
-					<EditScheduleBody
+					<DialogBody
 						handleValueChange={handleValueChange}
 						weekdays={scheduleData.weekdays}
 						dateStart={scheduleData.dateStart}
@@ -131,7 +131,7 @@ const EditScheduleDialog = ({
 						timeStart={scheduleData.timeStart}
 						timeEnd={scheduleData.timeEnd}
 					/>
-					<EditScheduleFooter
+					<DialogFooter
 						handleCloseDialog={handleCloseDialog}
 						handleSubmitBtn={handleSubmitBtn}
 						submitBtnText="Добавить расписание"

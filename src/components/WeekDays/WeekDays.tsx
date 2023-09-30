@@ -6,9 +6,9 @@ import {
 	useCallback,
 	useMemo,
 } from "react";
-import { WeekDaysPropsType } from "../types";
+import { WeekDaysPropsType } from "../../types";
 
-export const WeekDays = memo(function ({
+const WeekDays = memo(function ({
 	selWeekdays,
 	handleWeekdaysChange,
 }: WeekDaysPropsType) {
@@ -98,3 +98,5 @@ export const WeekDays = memo(function ({
 		</div>
 	);
 });
+
+export default WeekDays;
