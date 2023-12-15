@@ -1,4 +1,5 @@
 import { memo } from "react";
+import Button from "../../Button";
 import { EditScheduleHeaderPropsType } from "../../../types";
 
 const DialogHeader = memo(function ({
@@ -10,12 +11,12 @@ const DialogHeader = memo(function ({
 			<h1 className="modal-title fs-5" id="editScheduleDialogLabel">
 				{headerText}
 			</h1>
-			<button
-				type="button"
+			<Button
 				className="btn-close"
 				aria-label="Close"
 				onClick={handleCloseDialog}
-			></button>
+				type="button"
+			/>
 		</div>
 	);
 });

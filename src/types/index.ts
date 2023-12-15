@@ -1,4 +1,4 @@
-import { ChangeEvent } from "react";
+import { ButtonHTMLAttributes, ChangeEvent } from "react";
 
 export type HourType = {
 	value: number;
@@ -66,3 +66,9 @@ export type WeekDaysPropsType = {
 	selWeekdays: number[];
 	handleWeekdaysChange: (values: number[]) => void;
 };
+
+export interface ButtonPropsType extends ButtonHTMLAttributes<HTMLButtonElement> {
+	className?: string,
+	disabled?: boolean,
+	label?: string,
+}

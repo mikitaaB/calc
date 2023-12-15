@@ -1,4 +1,5 @@
 import { memo } from "react";
+import Button from "../../Button";
 import { EditScheduleFooterPropsType } from "../../../types";
 
 const DialogFooter = memo(function ({
@@ -10,17 +11,19 @@ const DialogFooter = memo(function ({
 		<div className="modal-footer">
 			<div className="d-flex justify-content-end mt-3">
 				<div className="me-1">
-					<button className="btn" onClick={handleCloseDialog}>
-						Отмена
-					</button>
+					<Button
+						onClick={handleCloseDialog}
+						label="Отмена"
+						type="button"
+					/>
 				</div>
 				<div className="me-1">
-					<button
-						className="btn btn-outline-dark"
+					<Button
+						className="btn-outline-dark"
 						onClick={handleSubmitBtn}
-					>
-						{submitBtnText}
-					</button>
+						label={submitBtnText}
+						type="submit"
+					/>
 				</div>
 			</div>
 		</div>

@@ -1,5 +1,6 @@
 import { memo, useState, useEffect, useCallback } from "react";
 import { StepInputProps } from "../../types";
+import Button from "../Button";
 
 const StepInput = memo(function ({
 	onValueChange,
@@ -26,29 +27,33 @@ const StepInput = memo(function ({
 
 	return (
 		<div className="input-group">
-			<button
-				className="btn btn-primary"
+			<Button
+				className="btn-primary"
 				disabled={value <= 0}
+				label="-"
 				onClick={handleButtonClick(-step)}
 				type="button"
-			>
-				-
-			</button>
+			/>
 			<input
 				type="text"
 				className="form-control text-center"
 				value={value}
 				readOnly
 			/>
-			<button className="btn btn-secondary disabled">{buttonText}</button>
-			<button
-				className="btn btn-primary"
+
+			<Button
+				className="btn-secondary"
+				disabled
+				label={buttonText}
+				type="button"
+			/>
+			<Button
+				className="btn-primary"
 				disabled={value >= maxValue}
+				label="+"
 				onClick={handleButtonClick(step)}
 				type="button"
-			>
-				+
-			</button>
+			/>
 		</div>
 	);
 });

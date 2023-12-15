@@ -1,5 +1,6 @@
 import { memo } from "react";
 import { TimerPropsType } from "../../types";
+import Button from "../Button";
 
 const Timer = memo(function ({
 	start,
@@ -17,7 +18,12 @@ const Timer = memo(function ({
 				type={!isEditStart ? "text" : type}
 				disabled={!isEditStart}
 			/>
-			<button className="btn btn-secondary disabled">до</button>
+			<Button
+				className="btn-secondary"
+				disabled
+				label="до"
+				type="button"
+			/>
 			<input
 				className="form-control text-center"
 				value={end}

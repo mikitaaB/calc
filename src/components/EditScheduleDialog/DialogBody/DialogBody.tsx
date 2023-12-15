@@ -11,6 +11,7 @@ import StepInput from "../../StepInput";
 import WeekDays from "../../WeekDays";
 import Timer from "../../Timer";
 import { EditScheduleBodyPropsType } from "../../../types";
+import Button from "../../Button";
 
 const DialogBody = memo(function ({
 	handleValueChange,
@@ -78,12 +79,12 @@ const DialogBody = memo(function ({
 			<form>
 				<div className="row">
 					<div className="d-flex justify-content-between align-items-center">
-						<button
+						<Button
+							className="btn-outline-primary"
+							disabled
+							label="Онлайн школа"
 							type="button"
-							className="btn btn-outline-primary disabled"
-						>
-							Онлайн школа
-						</button>
+						/>
 						<div className="d-flex align-items-center ms-3">
 							<label htmlFor="colorInput" className="form-label">
 								Цвет группы:

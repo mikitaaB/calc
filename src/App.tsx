@@ -1,6 +1,7 @@
 import { useState, useCallback, Suspense, lazy } from "react";
 
 import Loader from "./components/Loader";
+import Button from "./components/Button";
 const EditScheduleDialog = lazy(
 	() => import("./components/EditScheduleDialog")
 );
@@ -17,13 +18,12 @@ function App() {
 	return (
 		<>
 			<div className="text-center">
-				<button
-					type="button"
-					className="btn btn-outline-primary"
+				<Button
+					className="btn-outline-primary"
 					onClick={handleDisplayDialog}
-				>
-					Редактирование расписания
-				</button>
+					label="Редактирование расписания"
+					type="button"
+				/>
 			</div>
 			{isOpenEditScheduleDialog && (
 				<Suspense fallback={<Loader />}>
