@@ -1,17 +1,19 @@
-import { useState, useCallback, Suspense, lazy } from "react";
+import { useState, useCallback } from "react";
 
-import Loader from "./components/Loader";
 import Button from "./components/Button";
-const EditScheduleDialog = lazy(
-	() => import("./components/EditScheduleDialog")
-);
+import EditScheduleDialog from "./components/EditScheduleDialog";
 
 function App() {
 	const [isOpenEditScheduleDialog, setIsOpenEditScheduleDialog] =
 		useState<boolean>(false);
 
 	const handleDisplayDialog = useCallback(
-		() => setIsOpenEditScheduleDialog((prevState) => !prevState),
+		() => setIsOpenEditScheduleDialog(true),
+		[]
+	);
+
+	const handleCloseDialog = useCallback(
+		() => setIsOpenEditScheduleDialog(false),
 		[]
 	);
 
@@ -23,15 +25,14 @@ function App() {
 					onClick={handleDisplayDialog}
 					label="Редактирование расписания"
 					type="button"
+					data-bs-toggle="modal"
+					data-bs-target="#editScheduleDialog"
 				/>
 			</div>
-			{isOpenEditScheduleDialog && (
-				<Suspense fallback={<Loader />}>
-					<EditScheduleDialog
-						handleCloseDialog={handleDisplayDialog}
-					/>
-				</Suspense>
-			)}
+			<EditScheduleDialog
+				isOpenEditScheduleDialog={isOpenEditScheduleDialog}
+				handleCloseDialog={handleCloseDialog}
+			/>
 		</>
 	);
 }

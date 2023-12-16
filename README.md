@@ -1,6 +1,6 @@
 # calc
 
-A modal dialog to set up an academic schedule.
+A modal dialog to set up an academic schedule. After submitting the result goes to console.
 
 ### How to setup
 

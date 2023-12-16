@@ -13,11 +13,14 @@ import {
 	calculateDateEnd,
 	calculateTimeEnd,
 } from "../../utils/handleCalculations";
+import cn from "classnames";
 import { ScheduleDataType } from "../../types";
 
 const EditScheduleDialog = ({
+	isOpenEditScheduleDialog,
 	handleCloseDialog,
 }: {
+	isOpenEditScheduleDialog: boolean,
 	handleCloseDialog: () => void;
 }) => {
 	useEffect(() => {
@@ -105,14 +108,17 @@ const EditScheduleDialog = ({
 		handleValueChange("dateEnd", newDateEnd);
 	}, [handleValueChange, newDateEnd]);
 
+
+	const showModal = isOpenEditScheduleDialog ? "show d-block" : "d-none";
+
 	return (
 		<div
-			className="modal modal-xl fade show"
-			style={{ display: "block" }}
+			className={cn("modal modal-xl fade", showModal)}
 			id="editScheduleDialog"
 			aria-labelledby="editScheduleDialogLabel"
 			role="dialog"
 			aria-hidden={false}
+			tabIndex={-1}
 		>
 			<div
 				className="modal-dialog modal-dialog-scrollable"

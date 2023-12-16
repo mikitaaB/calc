@@ -8,12 +8,13 @@ const DialogHeader = memo(function ({
 }: EditScheduleHeaderPropsType) {
 	return (
 		<div className="modal-header">
-			<h1 className="modal-title fs-5" id="editScheduleDialogLabel">
+			<h1 className="modal-title fs-5" id="editScheduleDialogHeader">
 				{headerText}
 			</h1>
 			<Button
 				className="btn-close"
 				aria-label="Close"
+				data-bs-dismiss="modal"
 				onClick={handleCloseDialog}
 				type="button"
 			/>

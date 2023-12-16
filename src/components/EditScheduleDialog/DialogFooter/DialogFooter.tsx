@@ -13,6 +13,7 @@ const DialogFooter = memo(function ({
 				<div className="me-1">
 					<Button
 						onClick={handleCloseDialog}
+						data-bs-dismiss="modal"
 						label="Отмена"
 						type="button"
 					/>
