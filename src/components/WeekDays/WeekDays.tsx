@@ -4,8 +4,8 @@ import {
 	ChangeEvent,
 	Fragment,
 	useCallback,
-	useMemo,
 } from "react";
+import { WEEKDAYS } from "../../constants";
 import { WeekDaysPropsType } from "../../types";
 
 const WeekDays = memo(function ({
@@ -55,24 +55,9 @@ const WeekDays = memo(function ({
 		[checkedDays, handleWeekdaysChange]
 	);
 
-	const weekdays = useMemo(
-		() => [
-			{ id: "mwfbtn", label: "ПН/СР/ПТ", val: [1, 3, 5] },
-			{ id: "tuethubtn", label: "ВТ/ЧТ", val: [2, 4] },
-			{ id: "monbtn", label: "ПН", val: 1 },
-			{ id: "tuebtn", label: "ВТ", val: 2 },
-			{ id: "wedbtn", label: "СР", val: 3 },
-			{ id: "thubtn", label: "ЧТ", val: 4 },
-			{ id: "fribtn", label: "ПТ", val: 5 },
-			{ id: "satbtn", label: "СБ", val: 6 },
-			{ id: "sanbtn", label: "ВС", val: 0 },
-		],
-		[]
-	);
-
 	return (
 		<div className="btn-group" role="group" aria-label="weekdays_group">
-			{weekdays.map((day) => (
+			{WEEKDAYS.map((day) => (
 				<Fragment key={day.id}>
 					<input
 						type="checkbox"

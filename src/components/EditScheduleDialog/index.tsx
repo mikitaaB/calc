@@ -1,11 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import DialogHeader from "./DialogHeader";
-import {
-	breakTypeOptions,
-	classroomOptions,
-	hourTypeOptions,
-	teacherOptions,
-} from "../../constants";
 import DialogFooter from "./DialogFooter";
 
 import DialogBody from "./DialogBody";
@@ -13,44 +7,16 @@ import {
 	calculateDateEnd,
 	calculateTimeEnd,
 } from "../../utils/handleCalculations";
-import cn from "classnames";
 import { ScheduleDataType } from "../../types";
 
 const EditScheduleDialog = ({
-	isOpenEditScheduleDialog,
+	dialogData,
 	handleCloseDialog,
 }: {
-	isOpenEditScheduleDialog: boolean,
+	dialogData: ScheduleDataType,
 	handleCloseDialog: () => void;
 }) => {
-	useEffect(() => {
-		const handleKeyDown = (e: KeyboardEvent) => {
-			if (e.key === "Escape") {
-				handleCloseDialog();
-			}
-		};
-		document.addEventListener("keydown", handleKeyDown);
-		return () => {
-			document.removeEventListener("keydown", handleKeyDown);
-		};
-	}, [handleCloseDialog]);
-
-	const strToday = new Date().toISOString().slice(0, 10);
-
-	const [scheduleData, setScheduleData] = useState<ScheduleDataType>({
-		groupColor: "#FFFFF",
-		totalHoursValue: 0,
-		hoursPerDay: 0,
-		hourValue: hourTypeOptions[0].value,
-		breakType: breakTypeOptions[0].value,
-		classroom: classroomOptions[0].value,
-		teacher: teacherOptions[0].value,
-		dateStart: strToday,
-		dateEnd: strToday,
-		timeStart: "07:00",
-		timeEnd: "07:00",
-		weekdays: [1, 3],
-	});
+	const [scheduleData, setScheduleData] = useState<ScheduleDataType>(dialogData);
 
 	const handleValueChange = useCallback(
 		(key: string, value: number | string | number[]) => {
@@ -104,16 +70,26 @@ const EditScheduleDialog = ({
 			scheduleData.weekdays,
 		]
 	);
+
 	useEffect(() => {
 		handleValueChange("dateEnd", newDateEnd);
 	}, [handleValueChange, newDateEnd]);
 
-
-	const showModal = isOpenEditScheduleDialog ? "show d-block" : "d-none";
+	useEffect(() => {
+		const handleKeyDown = (e: KeyboardEvent) => {
+			if (e.key === "Escape") {
+				handleCloseDialog();
+			}
+		};
+		document.addEventListener("keydown", handleKeyDown);
+		return () => {
+			document.removeEventListener("keydown", handleKeyDown);
+		};
+	}, [handleCloseDialog]);
 
 	return (
 		<div
-			className={cn("modal modal-xl fade", showModal)}
+			className="modal modal-xl fade show d-block"
 			id="editScheduleDialog"
 			aria-labelledby="editScheduleDialogLabel"
 			role="dialog"
@@ -136,6 +112,7 @@ const EditScheduleDialog = ({
 						dateEnd={scheduleData.dateEnd}
 						timeStart={scheduleData.timeStart}
 						timeEnd={scheduleData.timeEnd}
+						groupColor={scheduleData.groupColor}
 					/>
 					<DialogFooter
 						handleCloseDialog={handleCloseDialog}

@@ -1,6 +1,6 @@
 import { HourType } from "../types";
 
-export const hourTypeOptions: HourType[] = [
+export const HOUR_TYPE_OPTIONS: HourType[] = [
 	{
 		value: 45,
 		text: "Академические",
@@ -11,7 +11,7 @@ export const hourTypeOptions: HourType[] = [
 	},
 ];
 
-export const breakTypeOptions = [
+export const BREAK_TYPE_OPTIONS = [
 	{
 		value: 0,
 		text: "Без перерыва",
@@ -38,7 +38,7 @@ export const breakTypeOptions = [
 	},
 ];
 
-export const teacherOptions = [
+export const TEACHER_OPTIONS = [
 	{
 		value: "",
 		text: "Выберите преподавателя на это время",
@@ -57,7 +57,7 @@ export const teacherOptions = [
 	},
 ];
 
-export const classroomOptions = [
+export const CLASSROOM_OPTIONS = [
 	{
 		value: "",
 		text: "Аудитория",
@@ -82,4 +82,16 @@ export const classroomOptions = [
 		value: "4-05",
 		text: "4-05",
 	},
+];
+
+export const WEEKDAYS = [
+	{ id: "mwfbtn", label: "ПН/СР/ПТ", val: [1, 3, 5] },
+	{ id: "tuethubtn", label: "ВТ/ЧТ", val: [2, 4] },
+	{ id: "monbtn", label: "ПН", val: 1 },
+	{ id: "tuebtn", label: "ВТ", val: 2 },
+	{ id: "wedbtn", label: "СР", val: 3 },
+	{ id: "thubtn", label: "ЧТ", val: 4 },
+	{ id: "fribtn", label: "ПТ", val: 5 },
+	{ id: "satbtn", label: "СБ", val: 6 },
+	{ id: "sanbtn", label: "ВС", val: 0 },
 ];

@@ -1,9 +1,9 @@
-import { ChangeEvent, memo, useCallback, useMemo, useRef } from "react";
+import { ChangeEvent, useCallback, useMemo, useRef } from "react";
 import {
-	hourTypeOptions,
-	breakTypeOptions,
-	classroomOptions,
-	teacherOptions,
+	HOUR_TYPE_OPTIONS,
+	BREAK_TYPE_OPTIONS,
+	CLASSROOM_OPTIONS,
+	TEACHER_OPTIONS,
 } from "../../../constants";
 import Alert from "../../Alert";
 import Select from "../../Select";
@@ -13,14 +13,15 @@ import Timer from "../../Timer";
 import { EditScheduleBodyPropsType } from "../../../types";
 import Button from "../../Button";
 
-const DialogBody = memo(function ({
+const DialogBody = ({
 	handleValueChange,
 	weekdays,
 	dateStart,
 	dateEnd,
 	timeStart,
 	timeEnd,
-}: EditScheduleBodyPropsType) {
+	groupColor,
+}: EditScheduleBodyPropsType) => {
 	const colorInputRef = useRef<HTMLInputElement>(null);
 
 	const handleTotalHoursChange = useCallback(
@@ -94,9 +95,9 @@ const DialogBody = memo(function ({
 								id="colorInput"
 								ref={colorInputRef}
 								type="color"
-								defaultValue="#FFFFFF"
 								onChange={handleGroupColorChange}
 								title="Choose your color"
+								value={groupColor}
 							/>
 						</div>
 					</div>
@@ -105,7 +106,7 @@ const DialogBody = memo(function ({
 				<div className="row row-cols-1 row-cols-sm-2 row-cols-md-2 mt-3">
 					<div className="col-md-4">
 						<Select
-							options={hourTypeOptions}
+							options={HOUR_TYPE_OPTIONS}
 							onSelectedOption={handleHourTypeChange}
 						/>
 					</div>
@@ -138,7 +139,7 @@ const DialogBody = memo(function ({
 				<div className="row row-cols-1 row-cols-sm-2 row-cols-md-2">
 					<div className="col col-md-4">
 						<Select
-							options={breakTypeOptions}
+							options={BREAK_TYPE_OPTIONS}
 							onSelectedOption={handleBreakTypeChange}
 						/>
 					</div>
@@ -163,14 +164,14 @@ const DialogBody = memo(function ({
 				<div className="row row-cols-1 row-cols-sm-2 row-cols-md-2 mt-3">
 					<div className="col col-md-7">
 						<Select
-							options={teacherOptions}
+							options={TEACHER_OPTIONS}
 							onSelectedOption={handleTeacherChange}
 							hideDefaultOption={true}
 						/>
 					</div>
 					<div className="col col-md-5">
 						<Select
-							options={classroomOptions}
+							options={CLASSROOM_OPTIONS}
 							onSelectedOption={handleClassroomChange}
 							hideDefaultOption={true}
 						/>
@@ -180,6 +181,6 @@ const DialogBody = memo(function ({
 			</form>
 		</div>
 	);
-});
+};
 
 export default DialogBody;

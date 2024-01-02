@@ -42,7 +42,9 @@ export const calculateDateEnd = (
 				);
 			}
 		}
-		return currentDate.toISOString().slice(0, 10);
+		return getFormatDate(currentDate);
 	}
-	return new Date().toISOString().slice(0, 10);
+	return getFormatDate(new Date());
 };
+
+export const getFormatDate = (date: Date) => date.toISOString().slice(0, 10);

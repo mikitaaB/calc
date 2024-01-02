@@ -33,6 +33,7 @@ export type EditScheduleBodyPropsType = {
 	dateEnd: string;
 	timeStart: string;
 	timeEnd: string;
+	groupColor: string;
 };
 
 export type EditScheduleFooterPropsType = {
